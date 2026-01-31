@@ -1,17 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+// React本体をインポートする（JSXを書くために必要）
+import React from "react";
+// ReactDOMをインポートして、Reactコンポーネントを実際のDOMに描画する
+import ReactDOM from "react-dom/client";
+// ルーティング機能を提供するBrowserRouterコンポーネントをインポートする
+import { BrowserRouter } from "react-router-dom";
+// 全体の共通スタイルを読み込む
+import "./index.css";
+// アプリケーションのルートコンポーネントAppをインポートする
+import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// index.html内のid="root"の要素を取得して、描画先のrootを作成する
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// rootに対してReactコンポーネントを描画する
 root.render(
+  // 開発時に余計なチェックをしてくれるStrictModeでラップする
   <React.StrictMode>
-    <App />
+    {/* ルーティング機能を有効にするため、AppをBrowserRouterでラップする */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

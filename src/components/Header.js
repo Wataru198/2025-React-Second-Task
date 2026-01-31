@@ -1,21 +1,54 @@
-// React本体をインポートする（JSXを使うために必要）
+// React本体をインポートする
 import React from "react";
+// React RouterのLinkコンポーネントをインポートして、ページ遷移用リンクを作る
+import { Link, NavLink } from "react-router-dom";
 
-// 画面上部のタイトルバーを表示するHeaderコンポーネントを定義する
+// ページ上部に表示する共通ヘッダーコンポーネントを定義する
 function Header() {
-  // JSXで表示内容を返す
+  // JSXとしてヘッダーの内容を返す
   return (
-    // ヘッダー全体を囲む要素（App.cssでデザインを当てる）
-    <header className="app-header">
-      {/* アプリ名を大きめの文字で表示する */}
-      <h1 className="app-title">Simple Counter App</h1>
-      {/* サブタイトルとして簡単な説明テキストを表示する */}
-      <p className="app-subtitle">
-        +1 / -1 / Reset のシンプルな React 製カウンター
-      </p>
+    // ヘッダー全体を包む要素
+    <header className="site-header">
+      {/* 左側にサイトタイトルを表示する */}
+      <div className="site-header__title">
+        {/* クリックでトップページに戻るリンク */}
+        <Link to="/" className="site-header__brand">
+          Wata Portfolio
+        </Link>
+      </div>
+
+      {/* 右側にナビゲーションメニューを表示する */}
+      <nav className="site-nav">
+        {/* NavLinkを使うと、現在のパスに応じてactiveクラスを付与できる */}
+        <NavLink
+          to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? "site-nav__link site-nav__link--active" : "site-nav__link"
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            isActive ? "site-nav__link site-nav__link--active" : "site-nav__link"
+          }
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/works"
+          className={({ isActive }) =>
+            isActive ? "site-nav__link site-nav__link--active" : "site-nav__link"
+          }
+        >
+          Works
+        </NavLink>
+      </nav>
     </header>
   );
 }
 
-// 他のファイルからHeaderコンポーネントを使えるようにexportする
+// 他のファイルからHeaderコンポーネントを利用できるようにexportする
 export default Header;
